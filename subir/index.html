@@ -1,0 +1,1066 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#FBF1EC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B1218" media="(prefers-color-scheme: dark)">
+<title>Gonza &amp; Tati</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gonza &amp; Tati">
+<meta property="og:description" content="Algo que te hice.">
+<meta name="description" content="Algo que te hice.">
+<style>
+  /* ── amanecer (light) ─────────────────────────────────────── */
+  :root {
+    --ground:    #FBF1EC;
+    --paper:     #FFF9F6;
+    --ink:       #3B2530;
+    --ink-soft:  #7A5F68;
+    --rose:      #C2536B;
+    --gold:      #B98A45;
+    --sea:       #4E7B90;
+    --sea-deep:  #2F5468;
+    --line:      rgba(59, 37, 48, 0.14);
+    --line-soft: rgba(59, 37, 48, 0.07);
+    --mote:      rgba(194, 83, 107, 0.30);
+    --glow-a:    rgba(233, 172, 150, 0.55);
+    --glow-b:    rgba(212, 154, 178, 0.32);
+    --shadow:    0 24px 60px -32px rgba(59, 37, 48, 0.42);
+
+    --display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Times New Roman", serif;
+    --util: "Avenir Next", "Segoe UI", Ubuntu, Roboto, system-ui, sans-serif;
+
+    --f-hero:  clamp(3.1rem, 12vw, 7.2rem);
+    --f-title: clamp(1.9rem, 4.6vw, 2.9rem);
+    --f-lead:  clamp(1.12rem, 1.9vw, 1.32rem);
+    --f-body:  clamp(1.03rem, 1.5vw, 1.13rem);
+    --f-num:   clamp(1.9rem, 5.2vw, 3.1rem);
+    --f-label: 0.66rem;
+
+    --measure: 34rem;
+    --pad: clamp(1.5rem, 5vw, 3rem);
+  }
+
+  /* ── atardecer (dark) ─────────────────────────────────────── */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:    #1B1218;
+      --paper:     #241922;
+      --ink:       #F2E2DE;
+      --ink-soft:  #B79AA4;
+      --rose:      #E8899A;
+      --gold:      #DFB574;
+      --sea:       #86AEC0;
+      --sea-deep:  #B6D3DF;
+      --line:      rgba(242, 226, 222, 0.16);
+      --line-soft: rgba(242, 226, 222, 0.08);
+      --mote:      rgba(223, 181, 116, 0.42);
+      --glow-a:    rgba(150, 68, 92, 0.42);
+      --glow-b:    rgba(86, 54, 92, 0.34);
+      --shadow:    0 24px 60px -30px rgba(0, 0, 0, 0.7);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:    #1B1218;
+    --paper:     #241922;
+    --ink:       #F2E2DE;
+    --ink-soft:  #B79AA4;
+    --rose:      #E8899A;
+    --gold:      #DFB574;
+    --sea:       #86AEC0;
+    --sea-deep:  #B6D3DF;
+    --line:      rgba(242, 226, 222, 0.16);
+    --line-soft: rgba(242, 226, 222, 0.08);
+    --mote:      rgba(223, 181, 116, 0.42);
+    --glow-a:    rgba(150, 68, 92, 0.42);
+    --glow-b:    rgba(86, 54, 92, 0.34);
+    --shadow:    0 24px 60px -30px rgba(0, 0, 0, 0.7);
+  }
+
+  /* ── base ─────────────────────────────────────────────────── */
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: var(--f-body);
+    line-height: 1.68;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  #motes {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(5rem, 14vw, 9rem);
+    padding: 0 var(--pad) clamp(5rem, 12vw, 8rem);
+  }
+
+  .eyebrow {
+    font-family: var(--util);
+    font-size: var(--f-label);
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .eyebrow.is-day {
+    color: var(--rose);
+  }
+
+  /* ── act i · el amanecer ──────────────────────────────────── */
+  .hero {
+    min-height: 100svh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.6rem, 4vw, 2.4rem);
+    text-align: center;
+    position: relative;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -30%;
+    left: 50%;
+    width: min(140vw, 62rem);
+    aspect-ratio: 1;
+    transform: translateX(-50%);
+    background:
+      radial-gradient(circle at 50% 50%, var(--glow-a) 0%, transparent 62%),
+      radial-gradient(circle at 62% 38%, var(--glow-b) 0%, transparent 55%);
+    filter: blur(18px);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .names {
+    font-size: var(--f-hero);
+    font-weight: 400;
+    line-height: 0.94;
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.04em;
+  }
+
+  .names .amp {
+    display: block;
+    font-style: italic;
+    font-size: 0.36em;
+    color: var(--rose);
+    line-height: 1;
+    margin: 0.16em 0;
+  }
+
+  .names em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .hero-lead {
+    font-size: var(--f-lead);
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 26rem;
+    text-wrap: balance;
+  }
+
+  /* ── el contador ──────────────────────────────────────────── */
+  .counter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: clamp(0.9rem, 3.6vw, 2.4rem);
+    margin-top: clamp(0.5rem, 2vw, 1.2rem);
+    padding-top: clamp(1.4rem, 4vw, 2.2rem);
+    border-top: 1px solid var(--line);
+    max-width: 44rem;
+    width: 100%;
+  }
+
+  .unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35em;
+    min-width: 3.4rem;
+  }
+
+  .unit b {
+    font-family: var(--display);
+    font-size: var(--f-num);
+    font-weight: 400;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+
+  .unit span {
+    font-family: var(--util);
+    font-size: var(--f-label);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .unit.tick b {
+    color: var(--rose);
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: clamp(1.4rem, 4vw, 2.4rem);
+    font-family: var(--util);
+    font-size: var(--f-label);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.7;
+    animation: drift 3.4s ease-in-out infinite;
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(0.4rem); }
+  }
+
+  /* ── act ii · la carta ────────────────────────────────────── */
+  .letter {
+    width: 100%;
+    max-width: calc(var(--measure) + 2 * clamp(1.6rem, 5vw, 3.4rem));
+    background: var(--paper);
+    border: 1px solid var(--line-soft);
+    border-radius: 2px;
+    box-shadow: var(--shadow);
+    padding: clamp(2.4rem, 7vw, 4rem) clamp(1.6rem, 5vw, 3.4rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.1em;
+    position: relative;
+  }
+
+  .letter::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: clamp(1.6rem, 5vw, 3.4rem);
+    right: clamp(1.6rem, 5vw, 3.4rem);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.7;
+  }
+
+  .letter h2 {
+    font-size: var(--f-title);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.16;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    margin-bottom: 0.2em;
+  }
+
+  .letter p {
+    max-width: var(--measure);
+  }
+
+  .letter p + p {
+    text-indent: 1.4em;
+  }
+
+  .signoff {
+    margin-top: 1.2em;
+    padding-top: 1.4em;
+    border-top: 1px solid var(--line-soft);
+    font-style: italic;
+    font-size: var(--f-lead);
+    color: var(--rose);
+    text-indent: 0 !important;
+  }
+
+  /* ── act iii · los momentos ───────────────────────────────── */
+  .gallery {
+    width: 100%;
+    max-width: 46rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(2.4rem, 6vw, 3.4rem);
+  }
+
+  .shots {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(2rem, 6vw, 3.2rem) clamp(1.4rem, 4.5vw, 2.6rem);
+    align-items: start;
+  }
+
+  /* cada foto cuelga de su alfiler */
+  .hang {
+    position: relative;
+    padding-top: 0.75rem;
+  }
+
+  .hang::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0.62rem;
+    height: 0.62rem;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 34% 28%,
+      color-mix(in oklab, var(--gold) 78%, #FFF),
+      color-mix(in oklab, var(--gold) 55%, #000));
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.38);
+    z-index: 2;
+  }
+
+  .frame {
+    background: var(--paper);
+    padding: clamp(0.4rem, 1.2vw, 0.6rem);
+    border: 1px solid var(--line-soft);
+    border-radius: 2px;
+    box-shadow: var(--shadow);
+    transform: rotate(var(--tilt, 0deg));
+    transform-origin: 50% 0;
+    transition: transform 0.7s cubic-bezier(0.34, 1.3, 0.5, 1), box-shadow 0.5s;
+  }
+
+  /* ángulos irregulares, como colgadas a mano */
+  .shots .hang:nth-child(8n + 1) .frame { --tilt: -2.4deg; }
+  .shots .hang:nth-child(8n + 2) .frame { --tilt:  1.7deg; }
+  .shots .hang:nth-child(8n + 3) .frame { --tilt:  1.1deg; }
+  .shots .hang:nth-child(8n + 4) .frame { --tilt: -1.9deg; }
+  .shots .hang:nth-child(8n + 5) .frame { --tilt:  2.2deg; }
+  .shots .hang:nth-child(8n + 6) .frame { --tilt: -1.3deg; }
+  .shots .hang:nth-child(8n + 7) .frame { --tilt: -2deg;   }
+  .shots .hang:nth-child(8n + 8) .frame { --tilt:  1.4deg; }
+
+  .frame.live { cursor: zoom-in; }
+
+  /* al pasar por arriba se endereza, como si se acomodara sola */
+  .shots .hang .frame.live:hover,
+  .shots .hang .frame.live:focus-visible {
+    --tilt: 0deg;
+    box-shadow: 0 26px 54px -22px rgba(0, 0, 0, 0.45);
+  }
+
+  .frame:focus-visible {
+    outline: 2px solid var(--rose);
+    outline-offset: 5px;
+  }
+
+  .frame img {
+    display: block;
+    width: 100%;
+    aspect-ratio: var(--ratio, 1 / 1);
+    object-fit: cover;
+    border-radius: 1px;
+  }
+
+  .frame figcaption {
+    min-height: 1.5rem;
+    padding: 0.55rem 0.3rem 0.15rem;
+    text-align: center;
+    font-style: italic;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+
+  .frame figcaption .when {
+    display: block;
+    font-family: var(--util);
+    font-style: normal;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.15rem;
+  }
+
+  /* marco vacío — hasta que pongas la foto */
+  .ghost {
+    width: 100%;
+    aspect-ratio: var(--ratio, 1 / 1);
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 0.45rem;
+    padding: 0.7rem;
+    text-align: center;
+    border: 1px dashed var(--gold);
+    background: color-mix(in oklab, var(--gold) 8%, transparent);
+    font-family: var(--util);
+    font-size: 0.56rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+
+  .ghost code {
+    font-family: var(--util);
+    letter-spacing: 0.04em;
+    color: var(--gold);
+    text-transform: none;
+  }
+
+  /* ── verla en grande ──────────────────────────────────────── */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: none;
+    background: rgba(22, 13, 19, 0.94);
+    padding: clamp(1rem, 4vw, 2.5rem);
+  }
+
+  .lightbox[data-open="true"] {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    justify-items: center;
+    align-content: center;
+    gap: 1.2rem;
+    animation: fade 0.35s ease both;
+  }
+
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+  .lightbox img {
+    max-width: min(96vw, 68rem);
+    max-height: 78svh;
+    object-fit: contain;
+    border-radius: 2px;
+    box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8);
+  }
+
+  .lightbox .lb-caption {
+    color: #F2E2DE;
+    font-family: var(--display);
+    font-style: italic;
+    text-align: center;
+    max-width: 34rem;
+    min-height: 1.6em;
+  }
+
+  .lb-btn {
+    position: absolute;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    border: 1px solid rgba(242, 226, 222, 0.28);
+    color: #F2E2DE;
+    border-radius: 50%;
+    width: 2.9rem;
+    height: 2.9rem;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    font-family: var(--util);
+    font-size: 1.1rem;
+    line-height: 1;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .lb-btn:hover,
+  .lb-btn:focus-visible {
+    background: rgba(242, 226, 222, 0.14);
+    border-color: rgba(242, 226, 222, 0.6);
+  }
+
+  .lb-btn:focus-visible {
+    outline: 2px solid var(--rose);
+    outline-offset: 3px;
+  }
+
+  #lbClose { top: clamp(0.8rem, 3vw, 1.6rem); right: clamp(0.8rem, 3vw, 1.6rem); }
+  #lbPrev  { left: clamp(0.5rem, 2vw, 1.6rem); top: 50%; transform: translateY(-50%); }
+  #lbNext  { right: clamp(0.5rem, 2vw, 1.6rem); top: 50%; transform: translateY(-50%); }
+
+  body.locked { overflow: hidden; }
+
+  /* ── act iv · el regalo ───────────────────────────────────── */
+  .gift {
+    width: 100%;
+    max-width: 44rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+    text-align: center;
+  }
+
+  .seal {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: var(--f-lead);
+    font-style: italic;
+    cursor: pointer;
+    border-radius: 2px;
+    box-shadow: var(--shadow);
+    padding: clamp(2.2rem, 6vw, 3rem) clamp(2rem, 6vw, 3.4rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s;
+  }
+
+  .seal:hover,
+  .seal:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.4);
+  }
+
+  .seal:focus-visible {
+    outline: 2px solid var(--rose);
+    outline-offset: 4px;
+  }
+
+  .seal .wax {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    background: radial-gradient(circle at 34% 30%, var(--rose), var(--sea-deep) 190%);
+    box-shadow: inset 0 -2px 6px rgba(0, 0, 0, 0.22);
+    display: grid;
+    place-items: center;
+    color: var(--paper);
+    font-size: 1.2rem;
+    font-style: normal;
+    letter-spacing: 0.02em;
+  }
+
+  .gift[data-open="true"] .seal {
+    display: none;
+  }
+
+  .card {
+    display: none;
+    width: 100%;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line-soft);
+    text-align: left;
+  }
+
+  .gift[data-open="true"] .card {
+    display: block;
+    animation: unseal 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes unseal {
+    from { opacity: 0; transform: translateY(1.4rem) scale(0.97); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .horizon {
+    height: clamp(7rem, 20vw, 11rem);
+    background:
+      linear-gradient(180deg,
+        color-mix(in oklab, var(--sea) 22%, var(--paper)) 0%,
+        color-mix(in oklab, var(--sea) 46%, var(--paper)) 54%,
+        color-mix(in oklab, var(--sea) 30%, var(--paper)) 55%,
+        color-mix(in oklab, var(--sea-deep) 40%, var(--paper)) 100%);
+    position: relative;
+  }
+
+  .horizon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 54%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.8;
+  }
+
+  .sun {
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    width: clamp(3.4rem, 10vw, 5rem);
+    aspect-ratio: 1;
+    transform: translate(-50%, -62%);
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--gold) 40%, transparent 72%);
+    opacity: 0.85;
+  }
+
+  .card-body {
+    background: var(--paper);
+    padding: clamp(1.8rem, 5vw, 2.6rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .card-body h3 {
+    font-size: var(--f-title);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.14;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  .card-body p {
+    max-width: var(--measure);
+    color: var(--ink-soft);
+  }
+
+  .card-body p strong {
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .detail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.8rem;
+    margin-top: 0.6rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line-soft);
+    font-family: var(--util);
+    font-size: var(--f-label);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sea);
+  }
+
+  /* ── reveal on scroll ─────────────────────────────────────── */
+  .veil {
+    opacity: 0;
+    transform: translateY(1.6rem);
+    transition: opacity 1.1s ease, transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .veil.seen {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .veil { opacity: 1; transform: none; transition: none; }
+    .scroll-cue { animation: none; }
+    .gift[data-open="true"] .card { animation: none; }
+    .seal { transition: none; }
+    .frame { transition: none; }
+    .lightbox[data-open="true"] { animation: none; }
+  }
+</style>
+</head>
+<body>
+<canvas id="motes" aria-hidden="true"></canvas>
+
+<main>
+  <!-- ── acto i ─────────────────────────────────────────────── -->
+  <section class="hero">
+    <p class="eyebrow" id="today">12 de agosto</p>
+
+    <h1 class="names">
+      Gonza
+      <span class="amp" aria-hidden="true">&amp;</span>
+      <em>Tati</em>
+    </h1>
+
+    <p class="hero-lead">Espero que nunca se termine</p>
+
+    <div class="counter" id="counter" role="timer" aria-live="off">
+      <div class="unit"><b id="y">—</b><span id="ly">Años</span></div>
+      <div class="unit"><b id="d">—</b><span id="ld">Días</span></div>
+      <div class="unit"><b id="h">—</b><span>Horas</span></div>
+      <div class="unit"><b id="m">—</b><span>Minutos</span></div>
+      <div class="unit tick"><b id="s">—</b><span>Segundos</span></div>
+    </div>
+
+    <p class="scroll-cue" aria-hidden="true">seguí bajando</p>
+  </section>
+
+  <!-- ── acto ii ────────────────────────────────────────────── -->
+  <section class="letter veil">
+    <h2>Felices 7 años, mi vida.</h2>
+
+    <p>No puedo creer por todo lo que pasamos y lo que todavía se viene. Todos los dias me sorprende lo lindo que es estar con vos, ver tu sonrisa, jugar juegos de mesa, nuestro jueguito de las canciones, salir a caminar con vos.</p>
+
+    <p>Gracias por bancarme en los días en los que no soy fácil, y por hacer que los buenos sean mejores. Todo es mucho mas lindo con vos.</p>
+
+    <p>Hice esta página porque quería darte algo que no se pueda perder ni guardar en un cajón. Está acá, y va a seguir acá, contando cada segundo desde que empezamos.</p>
+
+    <p class="signoff">Te amo con toda mi alma — Tu pochoclo</p>
+  </section>
+
+  <!-- ── acto iii ───────────────────────────────────────────── -->
+  <section class="gallery veil">
+    <p class="eyebrow">Algunos momentos</p>
+    <div class="shots" id="shots"></div>
+  </section>
+
+  <!-- ── acto iv ────────────────────────────────────────────── -->
+  <section class="gift veil" id="gift" data-open="false">
+    <p class="eyebrow">Todavía falta una cosa</p>
+
+    <button class="seal" id="seal" type="button" aria-expanded="false" aria-controls="card">
+      <span class="wax" aria-hidden="true">G&amp;T</span>
+      Tocá acá para abrirlo
+    </button>
+
+    <div class="card" id="card">
+      <div class="horizon" aria-hidden="true"><div class="sun"></div></div>
+      <div class="card-body">
+        <h3>Nos vamos el finde largo a Mar del Plata.</h3>
+        <p>Del <strong>9 al 12 de octubre</strong></p>
+        <p><strong>Armá el bolso</strong> — del resto me encargo yo.</p>
+        <div class="detail">
+          <span>Mar del Plata</span>
+          <span>9 &#8594; 12 de octubre</span>
+          <span id="faltan"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="lightbox" id="lightbox" data-open="false" role="dialog" aria-modal="true" aria-label="Foto">
+  <img id="lbImg" alt="">
+  <p class="lb-caption" id="lbCap"></p>
+  <button class="lb-btn" id="lbPrev" type="button" aria-label="Anterior">&#8249;</button>
+  <button class="lb-btn" id="lbNext" type="button" aria-label="Siguiente">&#8250;</button>
+  <button class="lb-btn" id="lbClose" type="button" aria-label="Cerrar">&#10005;</button>
+</div>
+
+<script>
+  /* ═══════════════════════════════════════════════════════════
+     EDITÁ ACÁ — la fecha en que empezaron (año, mes, día)
+     Ojo: los meses van de 0 a 11 → 0 = enero, 7 = agosto
+     ═══════════════════════════════════════════════════════════ */
+  const INICIO = new Date(2019, 7, 13, 0, 0, 0);
+
+  /* EDITÁ ACÁ — el finde en Mar del Plata (año, mes, día) */
+  const VIAJE = new Date(2026, 9, 9, 0, 0, 0);
+
+  /* ═══════════════════════════════════════════════════════════
+     EDITÁ ACÁ — las fotos.
+     Copiá las imágenes a la carpeta  fotos/  y listalas acá.
+       src   → el archivo
+       when  → la fecha o el lugar (opcional, sale en dorado)
+       said  → qué fue ese momento (opcional)
+       ratio → "1/1" cuadrada · "3/4" vertical · "4/3" apaisada
+     Agregá o borrá las que quieras — el orden es el de la lista.
+     ═══════════════════════════════════════════════════════════ */
+  const FOTOS = [
+    { src: "fotos/1.jpg", ratio: "1/1", when: "", said: "" },
+    { src: "fotos/2.jpg", ratio: "1/1", when: "", said: "" },
+    { src: "fotos/3.jpg", ratio: "1/1", when: "", said: "" },
+    { src: "fotos/4.jpg", ratio: "1/1", when: "", said: "" },
+    { src: "fotos/5.jpg", ratio: "1/1", when: "", said: "" },
+    { src: "fotos/6.jpg", ratio: "1/1", when: "", said: "" },
+    { src: "fotos/7.jpg", ratio: "1/1", when: "", said: "" },
+    { src: "fotos/8.jpg", ratio: "1/1", when: "", said: "" }
+  ];
+
+  const $ = (id) => document.getElementById(id);
+
+  const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio",
+                 "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+  const NUM = ["cero", "un", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho",
+               "nueve", "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis",
+               "diecisiete", "dieciocho", "diecinueve", "veinte"];
+
+  /* ── contador en vivo ─────────────────────────────────────── */
+  const out = { y: $("y"), d: $("d"), h: $("h"), m: $("m"), s: $("s"),
+                ly: $("ly"), ld: $("ld") };
+
+  function paint() {
+    const now = new Date();
+    let years = now.getFullYear() - INICIO.getFullYear();
+    const mark = new Date(INICIO);
+    mark.setFullYear(INICIO.getFullYear() + years);
+    if (mark > now) {
+      years -= 1;
+      mark.setFullYear(mark.getFullYear() - 1);
+    }
+
+    let rest = Math.max(0, now - mark);
+    const days = Math.floor(rest / 86400000); rest -= days * 86400000;
+    const hours = Math.floor(rest / 3600000); rest -= hours * 3600000;
+    const mins = Math.floor(rest / 60000); rest -= mins * 60000;
+    const secs = Math.floor(rest / 1000);
+
+    out.y.textContent = years;
+    out.d.textContent = days;
+    out.ly.textContent = years === 1 ? "Año" : "Años";
+    out.ld.textContent = days === 1 ? "Día" : "Días";
+    out.h.textContent = String(hours).padStart(2, "0");
+    out.m.textContent = String(mins).padStart(2, "0");
+    out.s.textContent = String(secs).padStart(2, "0");
+
+    /* el día exacto se anuncia solo */
+    const eyebrow = $("today");
+    const esHoy = days === 0 && years > 0;
+    eyebrow.classList.toggle("is-day", esHoy);
+    eyebrow.textContent = esHoy
+      ? "Hoy · " + (NUM[years] || years) + " años"
+      : now.getDate() + " de " + MESES[now.getMonth()] + " de " + now.getFullYear();
+
+    /* cuánto falta para Mar del Plata */
+    const chip = $("faltan");
+    if (chip) {
+      const hoy0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const faltan = Math.round((VIAJE - hoy0) / 86400000);
+      chip.textContent = faltan > 1 ? "Faltan " + faltan + " días"
+                       : faltan === 1 ? "Falta 1 día"
+                       : faltan === 0 ? "Es hoy"
+                       : "";
+      chip.hidden = faltan < 0;
+    }
+  }
+  paint();
+  setInterval(paint, 1000);
+
+  /* ── el regalo ────────────────────────────────────────────── */
+  const seal = $("seal"), gift = $("gift"), card = $("card");
+  seal.addEventListener("click", () => {
+    gift.dataset.open = "true";
+    seal.setAttribute("aria-expanded", "true");
+    card.setAttribute("tabindex", "-1");
+    card.focus({ preventScroll: true });
+    card.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+
+  /* ── las fotos ────────────────────────────────────────────── */
+  const EXTS = ["jpg", "jpeg", "png", "webp", "JPG", "JPEG", "PNG", "WEBP"];
+  const shots = $("shots");
+  const cargadas = [];   // solo las que existen de verdad
+
+  FOTOS.forEach((foto, i) => {
+    const hang = document.createElement("div");
+    hang.className = "hang";
+
+    const frame = document.createElement("figure");
+    frame.className = "frame";
+    frame.style.setProperty("--ratio", (foto.ratio || "1/1").replace("/", " / "));
+
+    const img = document.createElement("img");
+    img.alt = foto.said || "Gonza y Tati";
+    img.loading = "lazy";
+    img.decoding = "async";
+
+    /* no importa la extensión: probamos las que se usan */
+    const base = foto.src.replace(/\.[^.\/]+$/, "");
+    const opciones = [foto.src];
+    for (const ext of EXTS) {
+      const cand = base + "." + ext;
+      if (!opciones.includes(cand)) opciones.push(cand);
+    }
+    let intento = 0;
+
+    img.addEventListener("error", () => {
+      /* todavía quedan extensiones por probar */
+      if (++intento < opciones.length) { img.src = opciones[intento]; return; }
+
+      /* no está ninguna — dejamos el marco vacío con el nombre esperado */
+      const ghost = document.createElement("div");
+      ghost.className = "ghost";
+      ghost.innerHTML = "Poné la foto acá<br><code>" + base.split("/").pop() +
+                        ".jpg</code><br>o .jpeg &middot; .png &middot; .webp";
+      img.replaceWith(ghost);   /* solo la imagen — la tirita de abajo queda */
+      frame.classList.remove("live");
+      frame.removeAttribute("tabindex");
+      frame.removeAttribute("role");
+    });
+
+    img.addEventListener("load", () => {
+      frame.classList.add("live");
+      frame.tabIndex = 0;
+      frame.setAttribute("role", "button");
+      /* las guardamos en el orden de la lista, no en el que cargan */
+      cargadas.push({ ...foto, src: img.src, orden: i });
+      cargadas.sort((a, b) => a.orden - b.orden);
+      const abrir = () => abrirLightbox(cargadas.findIndex((c) => c.orden === i));
+      frame.addEventListener("click", abrir);
+      frame.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(); }
+      });
+    });
+
+    /* la tirita de abajo, como una polaroid */
+    const cap = document.createElement("figcaption");
+    if (foto.when) {
+      const w = document.createElement("span");
+      w.className = "when";
+      w.textContent = foto.when;
+      cap.append(w);
+    }
+    if (foto.said) cap.append(document.createTextNode(foto.said));
+
+    frame.append(img, cap);
+    hang.append(frame);
+    shots.append(hang);
+
+    img.src = opciones[0];   /* al final, para que loading="lazy" sirva */
+  });
+
+  /* ── verla en grande ──────────────────────────────────────── */
+  const lb = $("lightbox"), lbImg = $("lbImg"), lbCap = $("lbCap");
+  let actual = 0, volverA = null;
+
+  function abrirLightbox(i) {
+    actual = i;
+    pintarLightbox();
+    volverA = document.activeElement;
+    lb.dataset.open = "true";
+    document.body.classList.add("locked");
+    $("lbClose").focus();
+  }
+
+  function pintarLightbox() {
+    const f = cargadas[actual];
+    if (!f) return;
+    lbImg.src = f.src;
+    lbImg.alt = f.said || "Gonza y Tati";
+    lbCap.textContent = [f.when, f.said].filter(Boolean).join(" · ");
+    const varias = cargadas.length > 1;
+    $("lbPrev").hidden = !varias;
+    $("lbNext").hidden = !varias;
+  }
+
+  function cerrarLightbox() {
+    lb.dataset.open = "false";
+    document.body.classList.remove("locked");
+    if (volverA) volverA.focus();
+  }
+
+  function mover(paso) {
+    actual = (actual + paso + cargadas.length) % cargadas.length;
+    pintarLightbox();
+  }
+
+  $("lbClose").addEventListener("click", cerrarLightbox);
+  $("lbPrev").addEventListener("click", () => mover(-1));
+  $("lbNext").addEventListener("click", () => mover(1));
+  lb.addEventListener("click", (e) => { if (e.target === lb) cerrarLightbox(); });
+
+  addEventListener("keydown", (e) => {
+    if (lb.dataset.open !== "true") return;
+    if (e.key === "Escape") cerrarLightbox();
+    if (e.key === "ArrowLeft") mover(-1);
+    if (e.key === "ArrowRight") mover(1);
+  });
+
+  /* ── aparecer al hacer scroll ─────────────────────────────── */
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) {
+        e.target.classList.add("seen");
+        io.unobserve(e.target);
+      }
+    }
+  }, { threshold: 0.14 });
+  document.querySelectorAll(".veil").forEach((el) => io.observe(el));
+
+  /* ── polvo de luz ─────────────────────────────────────────── */
+  const cv = $("motes");
+  const ctx = cv.getContext("2d");
+  const still = matchMedia("(prefers-reduced-motion: reduce)");
+  let tint = "rgba(194,83,107,0.3)";
+  let dots = [];
+  let w = 0, h2 = 0;
+
+  function readTint() {
+    const v = getComputedStyle(document.documentElement).getPropertyValue("--mote").trim();
+    if (v) tint = v;
+  }
+
+  function size() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    w = innerWidth;
+    h2 = innerHeight;
+    cv.width = w * dpr;
+    cv.height = h2 * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const count = Math.round(Math.min(64, (w * h2) / 26000));
+    dots = Array.from({ length: count }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h2,
+      r: 0.7 + Math.random() * 2.1,
+      vy: -(0.06 + Math.random() * 0.22),
+      vx: (Math.random() - 0.5) * 0.14,
+      a: 0.25 + Math.random() * 0.75,
+      p: Math.random() * Math.PI * 2
+    }));
+  }
+
+  function draw(t) {
+    ctx.clearRect(0, 0, w, h2);
+    for (const p of dots) {
+      if (!still.matches) {
+        p.y += p.vy;
+        p.x += p.vx + Math.sin((t / 2600) + p.p) * 0.16;
+        if (p.y < -8) { p.y = h2 + 8; p.x = Math.random() * w; }
+        if (p.x < -8) p.x = w + 8;
+        if (p.x > w + 8) p.x = -8;
+      }
+      const twinkle = still.matches ? 1 : 0.65 + 0.35 * Math.sin((t / 1500) + p.p);
+      ctx.globalAlpha = p.a * twinkle;
+      ctx.fillStyle = tint;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    if (!still.matches) requestAnimationFrame(draw);
+  }
+
+  readTint();
+  size();
+  requestAnimationFrame(draw);
+
+  addEventListener("resize", () => { size(); if (still.matches) draw(0); });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    readTint();
+    if (still.matches) draw(0);
+  });
+  new MutationObserver(() => { readTint(); if (still.matches) draw(0); })
+    .observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+</script>
+</body>
+</html>
